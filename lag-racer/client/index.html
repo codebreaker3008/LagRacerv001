@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lag Racer - v0.0.1 ALPHA</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #0a0a0a;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+    #game-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #ui-overlay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #00ff00;
+      font-size: 14px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+      z-index: 100;
+    }
+    #connection-status {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #ff0000;
+      font-size: 12px;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    .powerup-bar {
+      margin-top: 10px;
+      padding: 5px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #00ff00;
+    }
+    #lag-indicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ff0000;
+      font-size: 48px;
+      font-weight: bold;
+      display: none;
+      animation: glitch 0.3s infinite;
+    }
+    @keyframes glitch {
+      0% { transform: translate(-50%, -50%) skew(0deg); }
+      25% { transform: translate(-52%, -48%) skew(2deg); }
+      50% { transform: translate(-48%, -52%) skew(-2deg); }
+      75% { transform: translate(-51%, -49%) skew(1deg); }
+      100% { transform: translate(-50%, -50%) skew(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container"></div>
+  
+  <div id="ui-overlay">
+    <div>LAG RACER v0.0.1</div>
+    <div>FPS: <span id="fps">60</span></div>
+    <div>LAP: <span id="lap">0</span>/3</div>
+    <div>PING: <span id="ping">???</span>ms</div>
+    <div class="powerup-bar">
+      <div>POWERUPS:</div>
+      <div>1: LAG BOMB x<span id="lagbomb-count">1</span></div>
+      <div>2: GHOST MODE x<span id="ghost-count">1</span></div>
+      <div>3: REWIND x<span id="rewind-count">1</span></div>
+    </div>
+  </div>
+
+  <div id="connection-status">⚠ CONNECTION UNSTABLE</div>
+  <div id="lag-indicator">CONNECTION INTERRUPTED</div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
